@@ -17,6 +17,7 @@
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
+    "@ljharb/tsconfig": "^0.3.2",
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.9",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "chai": "^4.3.7",
