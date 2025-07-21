@@ -16,12 +16,12 @@ function BatchStatusUpdate({ account }) {
       const contract = await getContract();
       const tx = await contract.updateBatchStatus(form.batchId, form.newStatus);
       await tx.wait();
-      toast.success("📊 Status updated!");
+      toast.success("Status updated!");
       await logAction({ address: account, action: "STATUS_UPDATE", txHash: tx.hash });
       setForm({ batchId: "", newStatus: "" });
     } catch (err) {
-      toast.error("⚠️ Update failed.");
-      console.error("🔥 Error:", err); // For full stack trace
+      toast.error("Update failed.");
+      console.error(" Error:", err); // For full stack trace
       toast.error(err.message || JSON.stringify(err));
     }
   };

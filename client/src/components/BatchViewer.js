@@ -3,7 +3,6 @@ import { ethers } from "ethers";
 import toast from "react-hot-toast";
 import { getContract } from "../services/contractService";
 
-// 🟦 Status color map for badge styling
 const statusColorMap = {
   manufactured: "bg-blue-500",
   intransit: "bg-yellow-500",
@@ -11,7 +10,7 @@ const statusColorMap = {
   verified: "bg-indigo-500"
 };
 
-// 📘 Maps status text to Tailwind color classes
+
 function getStatusColor(status) {
   return statusColorMap[status.toLowerCase()] || "bg-gray-400";
 }
@@ -46,7 +45,7 @@ function BatchViewer({ batchId }) {
           status: Number(status)
         });
       } catch (err) {
-        console.error("🚫 Failed to fetch batch:", err.message);
+        console.error(" Failed to fetch batch:", err.message);
         toast.error("Failed to load batch details");
       } finally {
         setLoading(false);
@@ -57,11 +56,11 @@ function BatchViewer({ batchId }) {
   }, [batchId]);
 
   if (loading) {
-    return <p>🔄 Loading batch details...</p>;
+    return <p>Loading batch details...</p>;
   }
 
   if (!batchDetails) {
-    return <p>🚫 No batch data found.</p>;
+    return <p>No batch data found.</p>;
   }
 
   const statusLabels = ["Manufactured", "InTransit", "Received", "Verified"];
@@ -70,7 +69,7 @@ function BatchViewer({ batchId }) {
 
   return (
     <div className="bg-white p-6 rounded shadow space-y-3">
-      <h3 className="text-xl font-semibold">📦 Batch ID: {batchDetails.batchId}</h3>
+      <h3 className="text-xl font-semibold">Batch ID: {batchDetails.batchId}</h3>
 
       <div>
         <span className="font-medium">Product Name:</span> {batchDetails.drugName}

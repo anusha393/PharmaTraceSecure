@@ -16,25 +16,25 @@ function Navbar() {
     <nav className="bg-white shadow mb-6 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between">
       <div className="flex space-x-4 mb-2 sm:mb-0">
         <NavLink to="/register" className={navItemClass}>
-          📦 Register
+          Register
         </NavLink>
         <NavLink to="/transfer" className={navItemClass}>
-          🔄 Transfer
+          Transfer
         </NavLink>
         <NavLink to="/status" className={navItemClass}>
-          📊 Update Status
+          Update Status
         </NavLink>
         <NavLink to="/browser" className={navItemClass}>
-        📋 Browse Batches
+        Browse Batches
       </NavLink>
         <NavLink to="/admin" className={navItemClass}>
-          🛡️ Role Admin
+          Role Admin
         </NavLink>
       </div>
 
       <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4">
-        <span className="text-sm text-gray-500">👤 Role: <span className="font-semibold">{role || "Loading..."}</span></span>
-        <span className="text-sm text-gray-500">🔐 Wallet: <span className="font-mono">{account || "Not connected"}</span></span>
+        <span className="text-sm text-gray-500">Role: <span className="font-semibold">{role || "Loading..."}</span></span>
+        <span className="text-sm text-gray-500"> Wallet: <span className="font-mono">{account || "Not connected"}</span></span>
       </div>
     </nav>
   );

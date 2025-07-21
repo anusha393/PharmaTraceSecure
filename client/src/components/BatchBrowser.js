@@ -20,7 +20,7 @@ function BatchBrowser() {
       } catch (err) {
         console.error("Failed to fetch batch IDs:", err.message);
       } finally {
-        setLoading(false);  // ✅ This line tells React we're done loading
+        setLoading(false);  // This line tells React we're done loading
       }
     }
   
@@ -31,12 +31,12 @@ function BatchBrowser() {
 
   return (
     <div className="bg-white p-4 rounded shadow space-y-3">
-      <h3 className="text-lg font-semibold">📋 Registered Batches</h3>
+      <h3 className="text-lg font-semibold">Registered Batches</h3>
   
       {loading ? (
-        <p className="text-gray-500">🔄 Loading batch list...</p>
+        <p className="text-gray-500">Loading batch list...</p>
       ) : batchIds.length === 0 ? (
-        <p className="text-gray-500">🚫 No batches found.</p>
+        <p className="text-gray-500">No batches found.</p>
       ) : (
         batchIds.map(id => (
             <NavLink
@@ -44,7 +44,7 @@ function BatchBrowser() {
             to={`/viewer/${id}`}
             className="px-3 py-1 bg-blue-100 hover:bg-blue-300 rounded text-sm font-mono"
           >
-            🔍 {id}
+             {id}
           </NavLink>
           
         ))

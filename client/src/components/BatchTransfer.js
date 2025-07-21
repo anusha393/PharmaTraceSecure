@@ -16,12 +16,12 @@ function BatchTransfer({ account }) {
       const contract = await getContract();
       const tx = await contract.transferBatch(form.batchId, form.newOwner);
       await tx.wait();
-      toast.success("🔄 Batch transferred!");
+      toast.success("Batch transferred!");
       await logAction({ address: account, action: "TRANSFER", txHash: tx.hash });
       setForm({ batchId: "", newOwner: "" });
     } catch (err) {
-      toast.error("⚠️ Transfer failed.");
-      console.error("🔥 Error:", err); // For full stack trace
+      toast.error("Transfer failed.");
+      console.error(" Error:", err); // For full stack trace
       toast.error(err.message || JSON.stringify(err));
     }
   };

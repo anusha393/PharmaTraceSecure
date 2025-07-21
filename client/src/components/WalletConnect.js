@@ -14,7 +14,7 @@ function WalletConnect() {
     connect();
   }, []);
 
-  return <p>🔐 Connected Wallet: {account || "Not connected"}</p>;
+  return <p> Connected Wallet: {account || "Not connected"}</p>;
 }
 
 export default WalletConnect;
