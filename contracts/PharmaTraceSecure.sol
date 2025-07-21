@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 
 
@@ -21,6 +21,8 @@ contract PharmaTraceSecure is Ownable, ReentrancyGuard {
 
     mapping(bytes32 => Batch) private batches;
     mapping(address => bool) public isManufacturer;
+    bytes32[] private batchIds;
+
 
     event ManufacturerWhitelisted(address indexed account);
     event Registered(bytes32 indexed batchId, address indexed manufacturer);
@@ -38,10 +40,9 @@ contract PharmaTraceSecure is Ownable, ReentrancyGuard {
         _;
     }
 
-   constructor() Ownable(msg.sender) {
-    isManufacturer[msg.sender] = true;
-}
-
+    constructor() {
+        isManufacturer[msg.sender] = true;
+    }
 
     function addManufacturer(address account) external onlyOwner {
         require(account != address(0), "Invalid address");
@@ -71,6 +72,7 @@ contract PharmaTraceSecure is Ownable, ReentrancyGuard {
             holder: msg.sender,
             status: Status.Manufactured
         });
+        batchIds.push(batchId);
 
         emit Registered(batchId, msg.sender);
     }
@@ -102,6 +104,10 @@ contract PharmaTraceSecure is Ownable, ReentrancyGuard {
     function generateBatchSalt() external view returns (uint256) {
         return uint256(keccak256(abi.encodePacked(msg.sender, block.timestamp, blockhash(block.number - 1))));
     }
+    function getAllBatchIds() external view returns (bytes32[] memory) {
+    return batchIds;
+    }
+
 
     receive() external payable {
         revert("Contract does not accept Ether");

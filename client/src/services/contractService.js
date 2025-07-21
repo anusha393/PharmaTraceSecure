@@ -1,9 +1,6 @@
-import dotenv from "dotenv";
-dotenv.config();
 import { ethers } from "ethers";
-process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
-
-const contractABI = [
+// import abi from "../assets/PharmaTraceSecure.json";
+const abi = [
     {
       "inputs": [],
       "stateMutability": "nonpayable",
@@ -336,14 +333,42 @@ const contractABI = [
       "type": "receive"
     }
   ];
+const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
+const apiUrl = process.env.REACT_APP_API_URL;
 
 
-const provider = new ethers.JsonRpcProvider(process.env.RPC_URL);
-const contract = new ethers.Contract(process.env.CONTRACT_ADDRESS, contractABI, provider);
+export const getContract = async () => {
+	const provider = new ethers.BrowserProvider(window.ethereum);
+	const signer = await provider.getSigner();
+  
+	const contract = new ethers.Contract(contractAddress, abi, signer);
+  
+	console.log("🧾 Contract initialized at:", contractAddress);
+	console.log("🔑 Signer address:", await signer.getAddress());
+  
+	return contract;
+  };
 
-console.log("🔍 Listening for contract events...");
+  export const getUserRole = async (address) => {
+	const contract = await getContract();
+	const isManufacturer = await contract.isManufacturer(address);
+	return isManufacturer ? "MANUFACTURER" : "UNKNOWN";
+  };
+  
 
-contract.on("ValueChanged", (newVal, event) => {
-  console.log("Event Fired → ValueChanged =", newVal.toString());
-  console.log(" Tx Hash:", event.transactionHash);
-});
+export const addManufacturerSafely = async (targetAddress) => {
+	if (!ethers.isAddress(targetAddress)) {
+	  throw new Error("Invalid wallet address format");
+	}
+  
+	const contract = await getContract();
+	const tx = await contract.addManufacturer(targetAddress, { value: 0 }); // Safeguard: no ETH
+	return await tx.wait();
+  };
+
+  export async function getAllBatchIds() {
+	const contract = await getContract();
+	return await contract.getAllBatchIds();
+  }
+  
+  
