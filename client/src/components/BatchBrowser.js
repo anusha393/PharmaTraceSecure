@@ -18,7 +18,7 @@ function BatchBrowser() {
         const decoded = ids.map((id) => ethers.decodeBytes32String(id));
         setBatchIds(decoded);
       } catch (err) {
-        console.error("🚫 Failed to fetch batch IDs:", err.message);
+        console.error("Failed to fetch batch IDs:", err.message);
       } finally {
         setLoading(false);  // ✅ This line tells React we're done loading
       }

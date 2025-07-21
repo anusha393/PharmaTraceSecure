@@ -343,8 +343,8 @@ export const getContract = async () => {
   
 	const contract = new ethers.Contract(contractAddress, abi, signer);
   
-	console.log("🧾 Contract initialized at:", contractAddress);
-	console.log("🔑 Signer address:", await signer.getAddress());
+	console.log("Contract initialized at:", contractAddress);
+	console.log(" Signer address:", await signer.getAddress());
   
 	return contract;
   };

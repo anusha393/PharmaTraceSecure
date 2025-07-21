@@ -21,6 +21,6 @@ const hre = require("hardhat");
     const deploy = require("./scripts/deploy.js");
     await deploy(); // Call main()
   } catch (err) {
-    console.error("❌ TLS-patched deployment failed:", err);
+    console.error("TLS-patched deployment failed:", err);
   }
 })();
