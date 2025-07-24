@@ -12,7 +12,7 @@ export function useRole(account) {
         const isManufacturer = await contract.isManufacturer(account);
         setRole(isManufacturer ? "MANUFACTURER" : "UNKNOWN");// Or fallback
       } catch (err) {
-        console.error("🚨 Role check failed:", err);
+        console.error("Role check failed:", err);
         setRole("UNKNOWN");
       }
     }
