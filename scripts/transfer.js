@@ -13,9 +13,9 @@ async function main() {
   const tokenId = 0; // adjust based on what you minted
 
   const tx = await MyNFT.transferFrom(sender, recipient, tokenId);
-  console.log("🔄 Transferring NFT...");
+  console.log("Transferring NFT...");
   await tx.wait();
-  console.log(`✅ NFT with tokenId ${tokenId} transferred to ${recipient}`);
+  console.log(`NFT with tokenId ${tokenId} transferred to ${recipient}`);
 }
 
 main().catch((error) => {

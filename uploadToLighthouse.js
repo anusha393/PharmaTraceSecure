@@ -20,8 +20,8 @@ async function uploadMetadata() {
     signedMessage
   );
 
-  console.log('✅ Metadata uploaded to IPFS!');
-  console.log(`🔗 tokenURI: ipfs://${response.data[0].Hash}`);
+  console.log('Metadata uploaded to IPFS!');
+  console.log(`tokenURI: ipfs://${response.data[0].Hash}`);
 
 }
 

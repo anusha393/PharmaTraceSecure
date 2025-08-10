@@ -12,9 +12,13 @@
   "dependencies": {
     "@lighthouse-web3/sdk": "^0.4.0",
     "@openzeppelin/contracts": "^4.9.6",
+    "body-parser": "^2.2.0",
     "commander": "^14.0.0",
+    "cors": "^2.8.5",
     "ethers": "^6.15.0",
+    "express-session": "^1.18.2",
     "nft.storage": "^7.2.0",
+    "siwe": "^3.0.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
   },
@@ -25,6 +29,7 @@
     "chai": "^4.3.7",
     "dotenv": "^16.6.1",
     "hardhat": "^2.25.0",
+    "hardhat-deploy": "^1.0.4",
     "mocha": "^11.7.1",
     "nodemon": "^3.1.10"
   }

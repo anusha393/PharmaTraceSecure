@@ -1,38 +1,31 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import WalletConnect from "./components/WalletConnect";
-import Navbar from "./components/Navbar";
-import RegisterPage from "./pages/RegisterPage";
-import TransferPage from "./pages/TransferPage";
-import StatusPage from "./pages/StatusPage";
-import ViewPage from "./pages/ViewPage";
-import RoleAdmin from "./pages/RoleAdmin";
-import BatchBrowser from "./components/BatchBrowser";
-import BatchViewer from "./components/BatchViewer";
+import { useEffect } from "react";
+import { useAuth } from "./context/AuthContext";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
-  return (
-    <Router>
-      <div className="min-h-screen bg-gray-50 text-gray-800 font-sans">
-        <h2 className="text-2xl font-semibold text-center py-6">💊 PharmaTraceSecure</h2>
-        <WalletConnect />
-        <Navbar />
-        <div className="p-6 max-w-3xl mx-auto">
-          <Routes>
-            <Route path="/" element={<Navigate to="/register" />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/transfer" element={<TransferPage />} />
-            <Route path="/status" element={<StatusPage />} />
-            <Route path="/viewer/:batchId" element={<ViewPage />} />
-            <Route path="/admin" element={<RoleAdmin />} />
-            <Route path="/browser" element={<BatchBrowser />} />
+  const { walletAddress, role, authenticate, authStatus } = useAuth();
 
-            <Route path="/viewer/:batchId" element={<BatchViewer />} />
+  useEffect(() => {
+    if (walletAddress) {
+      authenticate();
+    }
+  }, [walletAddress]);
+  console.log("Calling authenticate for:", walletAddress);
 
-          </Routes>
-        </div>
-      </div>
-    </Router>
-  );
+
+  if (authStatus === "authenticated" && walletAddress) {
+    return <Dashboard userAddress={walletAddress} role={role} />;
+  }
+
+  if (authStatus === "connecting") {
+    return <p>🔄 Connecting wallet...</p>;
+  }
+
+  if (authStatus === "error") {
+    return <p>⚠️ Wallet failed to connect.</p>;
+  }
+
+  return <p>🔌 Waiting for wallet connection...</p>;
 }
 
 export default App;

@@ -11,9 +11,9 @@ async function main() {
   const tokenURI = "ipfs://bafkreiaal3itooaxet3uqnivmu7afxacldiywcrur6qxq2kc7jhlqgzika";
 
   const tx = await MyNFT.mintNFT(recipient, tokenURI);
-  console.log("🧬 Minting in progress...");
+  console.log("Minting in progress...");
   await tx.wait();
-  console.log(`✅ Minted NFT to ${recipient} with tokenURI ${tokenURI}`);
+  console.log(`Minted NFT to ${recipient} with tokenURI ${tokenURI}`);
 }
 
 main().catch((error) => {

@@ -341,7 +341,7 @@ const contractABI = [
 const provider = new ethers.JsonRpcProvider(process.env.RPC_URL);
 const contract = new ethers.Contract(process.env.CONTRACT_ADDRESS, contractABI, provider);
 
-console.log("🔍 Listening for contract events...");
+console.log("Listening for contract events...");
 
 contract.on("ValueChanged", (newVal, event) => {
   console.log("Event Fired → ValueChanged =", newVal.toString());

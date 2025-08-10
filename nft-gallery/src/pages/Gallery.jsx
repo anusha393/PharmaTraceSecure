@@ -1,5 +1,7 @@
 import React from "react";
 import { useNFTs } from "../hooks/useNFTs";
+import GalleryCard from '../components/GalleryCard';
+
 
 const Gallery = () => {
   const metadata = useNFTs();
@@ -16,13 +18,14 @@ const Gallery = () => {
 
   return (
     <div>
-      <h2>{name}</h2>
-      <GalleryCard name={metadata.name} description={metadata.description} image={imageURL} />
-
-      
-      <p>{description}</p>
+      <GalleryCard
+        name={name}
+        description={description}
+        image={imageURL}
+      />
     </div>
   );
+  
 };
 
 export default Gallery;

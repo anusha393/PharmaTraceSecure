@@ -97,7 +97,7 @@ async function getContract() {
 	.action(async () => {
 	  const contract = await getContract();
 	  const value = await contract.get();
-	  console.log("📦 Stored value:", value.toString());
+	  console.log("Stored value:", value.toString());
 	});
 
 	program
@@ -107,7 +107,7 @@ async function getContract() {
     const contract = await getContract();
     const tx = await contract.set(num);
     await tx.wait();
-    console.log(`✅ New value set: ${num}`);
+    console.log(`New value set: ${num}`);
   });
 
 program.parse(process.argv);

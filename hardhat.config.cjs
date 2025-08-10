@@ -1,5 +1,8 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
+require("hardhat-deploy");
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+
 
 module.exports = {
   solidity: "0.8.28",
@@ -16,4 +19,10 @@ module.exports = {
       accounts: [`0x${process.env.PRIVATE_KEY}`],
     },
   },
+  namedAccounts: {
+    deployer: {
+      default: 0, // first account by default
+    },
+  },
 };
+
