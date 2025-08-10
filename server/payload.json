@@ -1,0 +1,13 @@
+{
+    "message": {
+      "domain": "localhost:3000",
+      "address": "0xabc...",
+      "statement": "Sign in",
+      "uri": "http://localhost:3000",
+      "version": "1",
+      "chainId": 11155111,
+      "nonce": "xyz123"
+    },
+    "signature": "0xdef..."
+  }
+  
